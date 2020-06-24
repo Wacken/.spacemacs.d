@@ -60,6 +60,9 @@ values."
             shell-default-position 'bottom)
      (syntax-checking :variables syntax-checking-enable-by-default t)
      fasd
+     ;; personal layers 
+     clojure-personal
+     evil-personal
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -322,15 +325,20 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here." 
   (setq clojure-enable-fancify-symbols t)
-  ;; (setq flyspell-mode t) 
+  (global-evil-tabs-mode t)
+  ;; (setq flyspell-mode t)  
   (define-key evil-normal-state-map (kbd "C-c +") 'evil-numbers/inc-at-pt)
   (define-key evil-normal-state-map (kbd "C-c -") 'evil-numbers/dec-at-pt)
   (define-key evil-normal-state-map (kbd "M-.") 'cider-find-var)
   (define-key evil-normal-state-map (kbd "SPC M-.") 'evil-repeat-pop-next)
   (define-key evil-visual-state-map (kbd ".") 'evil-repeat)
-  )
 
-(eval-after-load 'cider #'emidje-setup)
+  (eval-after-load 'cider #'emidje-setup)
+  (add-hook 'clojure-mode-hook #'cider-hydra-mode)
+  (add-hook 'clojure-mode-hook #'emidje-mode)
+  ;; (add-hook 'clojure-mode-hook #'flycheck-clj-kondo-mode)
+)
+
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
 
