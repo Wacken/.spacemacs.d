@@ -33,10 +33,10 @@ values."
    '(
      markdown
      clojure
-     (auto-completion :variables
-                      auto-completion-return-key-behavior nil
-                      auto-completion-tab-key-behavior 'cycle
-                      :disabled-for org)
+     ;; (auto-completion :variables
+     ;;                  auto-completion-return-key-behavior nil
+     ;;                  auto-completion-tab-key-behavior 'cycle
+     ;;                  :disabled-for org)
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -322,11 +322,15 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here." 
   (setq clojure-enable-fancify-symbols t)
+  ;; (setq flyspell-mode t) 
+  (define-key evil-normal-state-map (kbd "C-c +") 'evil-numbers/inc-at-pt)
+  (define-key evil-normal-state-map (kbd "C-c -") 'evil-numbers/dec-at-pt)
+  (define-key evil-normal-state-map (kbd "M-.") 'cider-find-var)
+  (define-key evil-normal-state-map (kbd "SPC M-.") 'evil-repeat-pop-next)
+  (define-key evil-visual-state-map (kbd ".") 'evil-repeat)
   )
 
+(eval-after-load 'cider #'emidje-setup)
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
 
-(global-prettify-symbols-mode 1)
-
-(add-hook 'after-init-hook #'global-flycheck-mode)
