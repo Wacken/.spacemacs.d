@@ -31,38 +31,17 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     markdown
-     clojure
-     ;; (auto-completion :variables
-     ;;                  auto-completion-return-key-behavior nil
-     ;;                  auto-completion-tab-key-behavior 'cycle
-     ;;                  :disabled-for org)
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     helm
-     auto-completion
      ;; better-defaults
-     emacs-lisp
-     git
-     ;; markdown
-     org
-     ;; spell-checking
      ;; version-control
-     themes-megapack
-     ranger
-     spotify
-     (shell :variables
-            shell-default-shell 'ansi-term
-            shell-default-height 30
-            shell-default-position 'bottom)
-     (syntax-checking :variables syntax-checking-enable-by-default t)
-     fasd
+
      ;; personal layers 
      clojure-personal
-     evil-personal
+     configuration 
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -72,7 +51,7 @@ values."
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(refactor-nrepl)
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and uninstall any
@@ -192,7 +171,7 @@ values."
    dotspacemacs-display-default-layout nil
    ;; If non nil then the last auto saved layouts are resume automatically upon
    ;; start. (default nil)
-   dotspacemacs-auto-resume-layouts nil
+   dotspacemacs-auto-resume-layouts t
    ;; Size (in MB) above which spacemacs will prompt to open the large file
    ;; literally to avoid performance issues. Opening a file literally means that
    ;; no major mode or minor modes are active. (default is 1)
@@ -222,7 +201,7 @@ values."
    dotspacemacs-enable-paste-transient-state nil
    ;; Which-key delay in seconds. The which-key buffer is the popup listing
    ;; the commands bound to the current keystroke sequence. (default 0.4)
-   dotspacemacs-which-key-delay 0.4
+   dotspacemacs-which-key-delay 0.1
    ;; Which-key frame position. Possible values are `right', `bottom' and
    ;; `right-then-bottom'. right-then-bottom tries to display the frame to the
    ;; right; if there is insufficient space it displays it at the bottom.
@@ -326,7 +305,6 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here." 
   (setq clojure-enable-fancify-symbols t)
   (global-evil-tabs-mode t)
-  ;; (setq flyspell-mode t)  
   (define-key evil-normal-state-map (kbd "C-c +") 'evil-numbers/inc-at-pt)
   (define-key evil-normal-state-map (kbd "C-c -") 'evil-numbers/dec-at-pt)
   (define-key evil-normal-state-map (kbd "M-.") 'cider-find-var)
@@ -337,6 +315,10 @@ you should place your code here."
   (add-hook 'clojure-mode-hook #'cider-hydra-mode)
   (add-hook 'clojure-mode-hook #'emidje-mode)
   ;; (add-hook 'clojure-mode-hook #'flycheck-clj-kondo-mode)
+  (use-package clojure-mode
+    :ensure t
+    :config
+    (require 'flycheck-clj-kondo))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will

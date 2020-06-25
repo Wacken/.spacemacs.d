@@ -1,4 +1,4 @@
-;;; packages.el --- evil-personal layer packages file for Spacemacs.
+;;; packages.el --- configuration layer packages file for Spacemacs.
 ;;
 ;; Copyright (c) 2012-2017 Sylvain Benner & Contributors
 ;;
@@ -18,20 +18,20 @@
 ;;
 ;;
 ;; Briefly, each package to be installed or configured by this layer should be
-;; added to `evil-personal-packages'. Then, for each package PACKAGE:
+;; added to `configuration-packages'. Then, for each package PACKAGE:
 ;;
 ;; - If PACKAGE is not referenced by any other Spacemacs layer, define a
-;;   function `evil-personal/init-PACKAGE' to load and initialize the package.
+;;   function `configuration/init-PACKAGE' to load and initialize the package.
 
 ;; - Otherwise, PACKAGE is already referenced by another Spacemacs layer, so
-;;   define the functions `evil-personal/pre-init-PACKAGE' and/or
-;;   `evil-personal/post-init-PACKAGE' to customize the package as it is loaded.
+;;   define the functions `configuration/pre-init-PACKAGE' and/or
+;;   `configuration/post-init-PACKAGE' to customize the package as it is loaded.
 
 ;;; Code:
 
-(defconst evil-personal-packages
+(defconst configuration-packages
   '(evil-tabs)
-  "The list of Lisp packages required by the evil-personal layer.
+  "The list of Lisp packages required by the configuration layer.
 
 Each entry is either:
 
@@ -58,8 +58,7 @@ Each entry is either:
       - A list beginning with the symbol `recipe' is a melpa
         recipe.  See: https://github.com/milkypostman/melpa#recipe-format")
 
-(defun evil-personal/init-evil-tabs ()
+(defun configuration/init-evil-tabs ()
   (use-package evil-tabs
     :defer t))
-
 ;;; packages.el ends here
