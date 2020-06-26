@@ -1,4 +1,5 @@
 (configuration-layer/declare-layers
  '(
-   clojure
+   (clojure :variables
+            clojure-enable-linters 'clj-kondo)
    ))

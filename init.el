@@ -39,9 +39,10 @@ values."
      ;; better-defaults
      ;; version-control
 
-     ;; personal layers 
+     ;; personal layers
      clojure-personal
-     configuration 
+     configuration
+     display
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -51,7 +52,7 @@ values."
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '(refactor-nrepl)
+   dotspacemacs-excluded-packages '()
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and uninstall any
@@ -234,7 +235,7 @@ values."
    ;; If non nil show the color guide hint for transient state keys. (default t)
    dotspacemacs-show-transient-state-color-guide t
    ;; If non nil unicode symbols are displayed in the mode line. (default t)
-   dotspacemacs-mode-line-unicode-symbols t
+   dotspacemacs-mode-line-unicode-symbols nil
    ;; If non nil smooth scrolling (native-scrolling) is enabled. Smooth
    ;; scrolling overrides the default behavior of Emacs which recenters point
    ;; when it reaches the top or bottom of the screen. (default t)
@@ -304,9 +305,9 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here." 
   (setq clojure-enable-fancify-symbols t)
-  (global-evil-tabs-mode t)
-  (define-key evil-normal-state-map (kbd "C-c +") 'evil-numbers/inc-at-pt)
-  (define-key evil-normal-state-map (kbd "C-c -") 'evil-numbers/dec-at-pt)
+  ;; (global-evil-tabs-mode t)
+  ;; (define-key evil-normal-state-map (kbd "C-c +") 'evil-numbers/inc-at-pt)
+  ;; (define-key evil-normal-state-map (kbd "C-c -") 'evil-numbers/dec-at-pt)
   (define-key evil-normal-state-map (kbd "M-.") 'cider-find-var)
   (define-key evil-normal-state-map (kbd "SPC M-.") 'evil-repeat-pop-next)
   (define-key evil-visual-state-map (kbd ".") 'evil-repeat)
@@ -314,7 +315,6 @@ you should place your code here."
   (eval-after-load 'cider #'emidje-setup)
   (add-hook 'clojure-mode-hook #'cider-hydra-mode)
   (add-hook 'clojure-mode-hook #'emidje-mode)
-  ;; (add-hook 'clojure-mode-hook #'flycheck-clj-kondo-mode)
   (use-package clojure-mode
     :ensure t
     :config

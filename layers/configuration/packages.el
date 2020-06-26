@@ -30,7 +30,10 @@
 ;;; Code:
 
 (defconst configuration-packages
-  '(evil-tabs)
+  '(
+    ;; evil-tabs
+    dash-functional
+    )
   "The list of Lisp packages required by the configuration layer.
 
 Each entry is either:
@@ -58,7 +61,11 @@ Each entry is either:
       - A list beginning with the symbol `recipe' is a melpa
         recipe.  See: https://github.com/milkypostman/melpa#recipe-format")
 
-(defun configuration/init-evil-tabs ()
-  (use-package evil-tabs
-    :defer t))
+;; (defun configuration/init-evil-tabs ()
+;;   (use-package evil-tabs
+;;     :defer t))
+
+(defun configuration/init-dash-functional ()
+  (use-package dash-functional
+    :ensure t))
 ;;; packages.el ends here
