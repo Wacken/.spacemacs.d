@@ -312,9 +312,10 @@ you should place your code here."
   (define-key evil-normal-state-map (kbd "SPC M-.") 'evil-repeat-pop-next)
   (define-key evil-visual-state-map (kbd ".") 'evil-repeat)
 
-  (eval-after-load 'cider #'emidje-setup)
+  ;; (eval-after-load 'cider #'emidje-setup)
   (add-hook 'clojure-mode-hook #'cider-hydra-mode)
-  (add-hook 'clojure-mode-hook #'emidje-mode)
+  ;; (add-hook 'clojure-mode-hook 'clojure-enable-miracle)
+  ;; (add-hook 'clojure-mode-hook #'emidje-mode)
   (use-package clojure-mode
     :ensure t
     :config

@@ -31,8 +31,10 @@
 
 (defconst clojure-personal-packages
   '(cider-hydra
-    emidje
-    flycheck-clj-kondo)
+    ;; emidje
+    flycheck-clj-kondo
+    ;; (miracle :location local)
+    )
   "The list of Lisp packages required by the clojure-personal layer.
 
 Each entry is either:
@@ -64,11 +66,16 @@ Each entry is either:
   (use-package cider-hydra
     :defer t))
 
-(defun clojure-personal/init-emidje ()
-  (use-package emidje
-    :defer t))
+;; (defun clojure-personal/init-emidje ()
+;;   (use-package emidje
+;;     :defer t))
 
 (defun clojure-personal/init-flycheck-clj-kondo ()
   (use-package flycheck-clj-kondo
     :defer t))
+
+;; (defun clojure-personal/init-miracle ()
+;;   (use-package miracle
+;;     :defer t))
+
 ;;; packages.el ends here
